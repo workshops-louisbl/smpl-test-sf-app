@@ -26,7 +26,7 @@ class SmokeTest extends WebTestCase
     {
         return array(
             array("/"),
-            array("/en/blog/"),
+            array("/en/blog"),
         );
     }
 
@@ -41,6 +41,10 @@ class SmokeTest extends WebTestCase
             Response::HTTP_MOVED_PERMANENTLY,
             "Blog redirects successfully"
         );
+
+        $client->followRedirect();
+
+        $this->assertResponseIsSuccessful();
     }
 
     public function testBlogPostLoadsSuccessfully()
